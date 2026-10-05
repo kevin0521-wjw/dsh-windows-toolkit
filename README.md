@@ -183,7 +183,15 @@ node scripts/cdp-verify-page.mjs --url "http://127.0.0.1:3080/?token=..." --shot
 | 图标 | 逐档解 PNG，统计实心率 / 圆角透明 / 前景像素 | 6 档尺寸全对 |
 | Web UI | headless Edge + CDP 渲染 + 截图 + 控制台监听 | 界面正常、零报错、设置面板可打开 |
 
-截图（`assets/`）：主界面与设置面板。
+截图（`assets/`）：
+
+主界面 —— 用 CDP 真机渲染的 dsh web UI，控制台零报错：
+
+![dsh web 主界面](assets/dsh-ui.png)
+
+设置面板 —— 真实鼠标事件点开（`el.click()` 会点错元素，见上文）：
+
+![设置面板](assets/dsh-settings.png)
 
 ---
 
