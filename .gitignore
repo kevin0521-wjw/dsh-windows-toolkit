@@ -1,0 +1,17 @@
+# 依赖
+node_modules/
+
+# 脚本运行时产物
+cdp-shot.png
+*.lnk
+
+# 临时调试文件（本仓库开发期用过，不该提交）
+_dbg-*
+_test-*
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+*.swp

@@ -1,0 +1,19 @@
+{
+  "name": "dsh-windows-toolkit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Windows desktop shortcut toolkit for npx-only CLIs, plus local web-UI verification over CDP and host-upgrade plugin diagnostics",
+  "type": "commonjs",
+  "scripts": {
+    "shortcut": "node scripts/make-shortcut.cjs",
+    "verify": "node scripts/cdp-verify-page.mjs",
+    "icon": "python scripts/svg-to-ico.py"
+  },
+  "dependencies": {
+    "koffi": "^3.3.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

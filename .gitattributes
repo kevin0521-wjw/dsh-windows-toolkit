@@ -1,0 +1,15 @@
+# 行尾策略：显式锁定，不依赖克隆方的 core.autocrlf
+#
+# 为什么重要：.cmd / .bat 由 cmd.exe 解析，CRLF 最稳妥；
+# 而文本资产（脚本 / 文档）统一成 LF，避免"同一份文件在不同机器上字节不同"
+# 导致的各种误判（例如按哈希做校验时 Windows 与 CI 结果不一致）。
+* text=auto eol=lf
+
+# Windows 批处理一律 CRLF —— 优先级高于上面的默认规则
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# 二进制不做任何转换
+*.png binary
+*.ico binary
+*.lnk binary

@@ -1,0 +1,31 @@
+# `cordis.patch.yml` 用户补丁层 —— 示例
+#
+# 位置：%USERPROFILE%\.dsh\profiles\<profile>\cordis.patch.yml
+#
+# 这是 profile 的「用户补丁层」，在每一层 bundle 之后应用。
+# 内容是一个顶层 YAML 数组，元素是 loader 的补丁条目：
+# 按 id 定位的配置覆盖、禁用、以及插入列表。
+# 支持 `!!js` 表达式。
+#
+# ⚠️ 这个文件会被 dsh 运行时**追加写入**（它自己的记录）。
+#    要手工编辑请先退出 dsh，否则改动可能和它的写入交错。
+#    编辑前建议先备份：cp cordis.patch.yml cordis.patch.yml.bak-<日期>
+
+# ---- 禁用某个插件（可逆：删掉这条即恢复挂载，插件文件不会被删）----
+#
+# 适用场景：插件是按旧版 API 编译的，宿主升级后它依赖的整套接口被移除，
+# 启动时报 "Failed to load plugins / <插件名> ... did not activate"。
+# 详见 docs/plugin-compat.md。
+#
+- id: ui-status-label          # 条目 id（报错里会直接给出这个名字）
+  disabled: true
+
+# ---- 覆盖某个条目的配置 ----
+#
+# 下面这条是 dsh 运行时自己写进去的，顺带当覆盖语法的示例：
+# 用 name 指定包，用 config 覆盖它的配置项。
+#
+- id: ui-settings-general
+  name: "@deepseek-ai/dsh-client-ui-settings-general"
+  config:
+    welcomeNoticeVersion: 2026-08-13.1
