@@ -100,13 +100,18 @@ dsh: disabling profile plugin row "settings":
 Plugin @deepseek-ai/dsh-settings@0.0.1-rc.1 is incompatible with dsh 0.1.7-rc.2
 ```
 
-对照版本：
+对照版本（实测读取各包 `package.json`）：
 
 | 包 | profile 里（被抬高） | `dsh` 自带 |
 |---|---|---|
 | `@deepseek-ai/dsh-settings` | `0.0.1-rc.1` | `0.1.7-rc.2` |
-| `@deepseek-ai/cosmokit` | `1.8.3` | 新版 |
-| `@deepseek-ai/schemastery` | `3.18.2` | 新版 |
+| `@deepseek-ai/cosmokit` | `1.8.3` | `1.8.5` |
+| `@deepseek-ai/schemastery` | `3.18.2` | `3.18.4` |
+
+注意 `dsh-settings` 那一行：被抬高的版本号是 `0.0.1-rc.1`，而宿主自带的是 `0.1.7-rc.2`
+—— **主版本号差了一档**，所以版本闸门直接判定不兼容。
+`cosmokit` / `schemastery` 只差补丁位，属于"旧一点但没到被拦"的程度。
+**版本号本身不重要，重要的是「profile 根目录的副本会优先命中」这个解析顺序。**
 
 装插件时它把自己的依赖**抬高（hoist）到了 profile 根目录**，于是在模块解析时
 **盖住了 `dsh` 自带的同名列** —— 宿主自己的 `settings` 行因此被版本闸门判定为不兼容而禁用。
